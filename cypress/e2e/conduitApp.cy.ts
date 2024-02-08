@@ -1,64 +1,63 @@
 /// <reference types="cypress" />
 import { expect } from "chai";
+import { homepage } from "../support/pages/HomePage";
+import * as Conduit from '../support/features/conduitApp/conduitCommandsWebUtils';
+import { userInfo } from '../support/user_credentials';
 
 describe('template spec', () => {
     // An application under test ( AUT )
-
-    let randomData = Math.random().toString(36).substring(2);
-    const username = "Auto" + randomData;
-    const email = "auto_email" + randomData + randomData + "@test.com";
-    const password = 'password1234!';
-
     beforeEach(() => {
-        cy.visit('https://angularjs.realworld.io/#/');
+        homepage.visitConduitHomePage();
     });
 
-    it('Sign up', () => {
+    it.only('Sign up', () => {
         cy.intercept('POST', '**/*.realworld.io/api/users').as('createUser');
+        Conduit.action.clickSignUpLink();
+        Conduit.assert.SignUpButtonShown();
 
-        cy.contains('Sign up').click()
-        cy.get('input[placeholder="Username"]').clear().type(username);
-        cy.get('input[placeholder="Email"]').clear().type(email);
-        cy.get('input[placeholder="Password"]').clear().type(password);
-        cy.get('button[type="submit"]').click();
+        Conduit.action.typeUserName();
+        Conduit.action.typeEmail();
+        Conduit.action.typePassword();
+        Conduit.action.clickSignUpButton();
 
         cy.wait('@createUser', { timeout: 5000 }).then(({ request, response }) => {
             // cy.log("Request: " + JSON.stringify(request));
             // cy.log("Response: " + JSON.stringify(response));
             // cy.log('User name is : ' + JSON.stringify(request?.body.user.email));
             expect(response?.statusCode).to.eq(201);
-            expect(request?.body.user.username).to.eq(username);
-            expect(request?.body.user.email).to.eq(email);
-        })
-
+            expect(request?.body.user.username).to.eq(userInfo.USER_NAME);
+            expect(request?.body.user.email).to.eq(userInfo.EMAIL);
+        });
     });
 
-    it('Sign in', () => {
-        cy.contains('Sign in').click();
-        cy.get('input[placeholder="Email"]').clear().type(email);
-        cy.get('input[placeholder="Password"]').clear().type(password);
-        cy.get('button[type="submit"]').click();
-        cy.get(':nth-child(4) > .nav-link').should('exist').contains(username);
+    it.only('Sign in', () => {
+        Conduit.action.clickSignInLink();
+        Conduit.assert.SignInButtonShown();
+        Conduit.action.typeEmail();
+        Conduit.action.typePassword();
+        Conduit.action.clickSignInButton();
+        Conduit.assert.UserNameShownInHomePage();
     });
 
-    // Mocking data !! 
-    it('Mocking popular tags', () => {
-        // cy.mock_tags(email, password);
-        cy.intercept('GET', '**/tags', { fixture: 'popularTags.json' }).as('tags');
-        
-        cy.contains('Sign in').click();
-        cy.get('input[placeholder="Email"]').clear().type(email);
-        cy.get('input[placeholder="Password"]').clear().type(password);
-        cy.get('button[type="submit"]').click();
-        cy.get('.tag-list').should('contain', 'Binoy')
-            .and('contain', 'Cypress')
-            .and('contain', 'implementations');
-    });
+    // // Mocking data !! 
+    // xit('Mocking popular tags', () => {
+    //     // cy.mock_tags(email, password);
+    //     cy.intercept('GET', '**/tags', { fixture: 'popularTags.json' }).as('tags');
 
-    it('Mocking feed data', () => {
-        cy.mock_articles(email, password);
-        cy.wait('@articles').then(({request, response}) => {
-            expect(response?.body.articles[1].title).to.eq('Welcome BT fab');
-        })
-    });
-})
+    //     cy.contains('Sign in').click();
+    //     cy.get('input[placeholder="Email"]').clear().type(email);
+    //     cy.get('input[placeholder="Password"]').clear().type(password);
+    //     cy.get('button[type="submit"]').click();
+    //     cy.get('.tag-list').should('contain', 'Binoy')
+    //         .and('contain', 'Cypress')
+    //         .and('contain', 'implementations');
+    // });
+
+    // xit('Mocking feed data', () => {
+    //     cy.mock_articles(email, password);
+    //     cy.wait('@articles').then(({ request, response }) => {
+    //         expect(response?.body.articles[1].title).to.eq('Welcome BT fab');
+    //     })
+    // });
+
+});
