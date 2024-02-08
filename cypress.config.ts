@@ -10,7 +10,7 @@ export default defineConfig({
   },
   env: {
     homePage: "https://automationteststore.com",
-    conduitHomePage: "https://angular.realworld.io/",
+    conduitHomePage: "https://angularjs.realworld.io/#/",
     contactUs: "https://automationteststore.com/index.php?rt=content/contact",
     loginPage: "https://automationteststore.com/index.php?rt=account/login",
   }
