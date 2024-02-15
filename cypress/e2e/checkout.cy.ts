@@ -2,15 +2,15 @@
 
 import { homepage } from "../support/pages/HomePage";
 import * as Checkout from '../support/features/checkout/checkoutCommandsWebUtils';
-
+import { testUser } from "../support/user_credentials";
 
 describe('Log in', () => {
     beforeEach(() => {
         homepage.visitLoginPage();
     });
 
-    it.skip('Adding a product to the cart and checkout', () => {
-        cy.login_form(Cypress.env('valid_user').validusername, Cypress.env('valid_user').validpassword);
+    it('Adding a product to the cart and checkout', () => {
+        cy.login_form(testUser.USER_NAME, testUser.PASSWORD);
         cy.wait(5000);
         cy.get('#customer_menu_top').should('exist');
 
