@@ -21,9 +21,6 @@ describe('template spec', () => {
         Conduit.action.clickSignUpButton();
 
         cy.wait('@createUser', { timeout: 5000 }).then(({ request, response }) => {
-            // cy.log("Request: " + JSON.stringify(request));
-            // cy.log("Response: " + JSON.stringify(response));
-            // cy.log('User name is : ' + JSON.stringify(request?.body.user.email));
             expect(response?.statusCode).to.eq(201);
             expect(request?.body.user.username).to.eq(userInfo.USER_NAME);
             expect(request?.body.user.email).to.eq(userInfo.EMAIL);
