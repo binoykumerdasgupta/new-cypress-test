@@ -10,7 +10,7 @@ describe('template spec', () => {
         homepage.visitConduitHomePage();
     });
 
-    it.only('Sign up', () => {
+    it('Sign up', () => {
         cy.intercept('POST', '**/*.realworld.io/api/users').as('createUser');
         Conduit.action.clickSignUpLink();
         Conduit.assert.SignUpButtonShown();
@@ -27,7 +27,7 @@ describe('template spec', () => {
         });
     });
 
-    it.only('Sign in', () => {
+    it('Sign in', () => {
         Conduit.action.clickSignInLink();
         Conduit.assert.SignInButtonShown();
         Conduit.action.typeEmail();
@@ -37,24 +37,32 @@ describe('template spec', () => {
     });
 
     // // Mocking data !! 
-    // xit('Mocking popular tags', () => {
-    //     // cy.mock_tags(email, password);
-    //     cy.intercept('GET', '**/tags', { fixture: 'popularTags.json' }).as('tags');
+    it('Mocking popular tags', () => {
+        cy.intercept('GET', '**/tags', { fixture: 'popularTags.json' }).as('tags');
 
-    //     cy.contains('Sign in').click();
-    //     cy.get('input[placeholder="Email"]').clear().type(email);
-    //     cy.get('input[placeholder="Password"]').clear().type(password);
-    //     cy.get('button[type="submit"]').click();
-    //     cy.get('.tag-list').should('contain', 'Binoy')
-    //         .and('contain', 'Cypress')
-    //         .and('contain', 'implementations');
-    // });
+        Conduit.action.clickSignInLink();
+        Conduit.assert.SignInButtonShown();
+        Conduit.action.typeEmail();
+        Conduit.action.typePassword();
+        Conduit.action.clickSignInButton();
 
-    // xit('Mocking feed data', () => {
-    //     cy.mock_articles(email, password);
-    //     cy.wait('@articles').then(({ request, response }) => {
-    //         expect(response?.body.articles[1].title).to.eq('Welcome BT fab');
-    //     })
-    // });
+        cy.get('.tag-list').should('contain', 'Binoy')
+            .and('contain', 'Cypress')
+            .and('contain', 'implementations');
+    });
+
+    it('Mocking feed data', () => {
+        cy.intercept('GET', '**/articles/feed*', { fixture: 'articles.json' }).as('articles');
+
+        Conduit.action.clickSignInLink();
+        Conduit.assert.SignInButtonShown();
+        Conduit.action.typeEmail();
+        Conduit.action.typePassword();
+        Conduit.action.clickSignInButton();
+
+        cy.wait('@articles').then(({ request, response }) => {
+            expect(response?.body.articles[1].title).to.eq('Welcome Binoy fab');
+        })
+    });
 
 });
