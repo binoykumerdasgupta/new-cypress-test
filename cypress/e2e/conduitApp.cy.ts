@@ -62,7 +62,7 @@ describe('template spec', () => {
 
         cy.wait('@articles').then(({ request, response }) => {
             expect(response?.body.articles[1].title).to.eq('Welcome Binoy fab');
-        })
+        });
     });
 
 });
