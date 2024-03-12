@@ -3,7 +3,7 @@
 import { shuffleArray } from '../../../../utils/utils';
 import { bradyContactUsInfo } from '../../user_credentials';
 import { constants } from './bradyContactUsConstants';
-import { AreaOfInterest } from './types';
+import { AreaOfInterest, HowDidYouHearUs } from './types';
 
 const { defaultCopy } = constants;
 
@@ -63,62 +63,42 @@ export const action = {
     });
   },
 
-  selectCheckboxAreaOfInterest: () => {
-    selectors.getAreaOfInterestCheckBox().then(($checkboxes) => {
-      const randomIndex = Math.floor(Math.random() * $checkboxes.length);
-      cy.wrap($checkboxes[randomIndex]).check();
-    });
-  },
+  // SSSselectFromHowDidYouHearAboutUs: () => {
+  //   selectors.getHowDidYouHearAboutUs().as('selectDropdown');
+  //   cy.get('@selectDropdown').then(($value) => {
+  //     const options = $value.find('option:not([value=""])');
+  //     const randomIndex = Math.floor(
+  //       Math.random() * Object.keys(HowDidYouHearUs).length
+  //     );
+  //     const randomOption = Object.values(HowDidYouHearUs)[randomIndex];
 
-  SSselectMultipleCheckboxesAreaOfInterest: (count: number) => {
-    if (count < 1 || count > 5) {
-      throw new Error('Please specify a number of checkboxes between 1 and 5.');
-    }
-    selectors.getAreaOfInterestCheckBox().then(($checkboxes) => {
-      const totalCheckboxes = $checkboxes.length;
-      const checkboxesToCheckCount = Math.min(count, totalCheckboxes);
-      const shuffledCheckboxes = shuffleArray($checkboxes.toArray());
-      const checkboxesToCheck = shuffledCheckboxes.slice(
-        0,
-        checkboxesToCheckCount
-      );
-      checkboxesToCheck.forEach((checkbox) => {
-        cy.wrap(checkbox).check();
-      });
-    });
-  },
+  //     cy.get('@selectDropdown').select(randomOption);
+  //   });
+  // },
 
-  SSSSselectMultipleCheckboxesAreaOfInterest: (areas: AreaOfInterest) => {
+  selectCheckboxesAreaOfInterest: (areas: AreaOfInterest) => {
     cy.contains('label', areas)
       .find('input[type="checkbox"]')
       .check({ force: true });
   },
 
-  selectMultipleCheckboxesAreaOfInterest: (count: number) => {
-    if (count < 1 || count > 5) {
-      throw new Error('Please specify a number of checkboxes between 1 and 5.');
-    }
-    selectors.getAreaOfInterestCheckBox().then(($checkboxes) => {
-      const totalCheckboxes = $checkboxes.length;
-      const allAreas = Object.values(AreaOfInterest);
-      const shuffledAreas = shuffleArray(allAreas);
-
-      let selectedCount = 0;
-      $checkboxes.each((index, el) => {
-        const area = shuffledAreas[selectedCount];
-        if (area) {
-          const checkbox = el as HTMLInputElement;
-          if (checkbox.value === area) {
-            cy.wrap(checkbox).check();
-            selectedCount++;
-          }
-          if (selectedCount >= count) {
-            return false;
-          }
-        }
-      });
-    });
-  },
+  // selectMultipleCheckboxesAreaOfInterest: (count: number) => {
+  //   if (count < 1 || count > 5) {
+  //     throw new Error('Please specify a number of checkboxes between 1 and 5.');
+  //   }
+  //   selectors.getAreaOfInterestCheckBox().then(($checkboxes) => {
+  //     const shuffledCheckboxes = shuffleArray($checkboxes.toArray());
+  //     for (let i = 0; i < count; i++) {
+  //       const checkbox = shuffledCheckboxes[i] as HTMLInputElement;
+  //       cy.wrap(checkbox)
+  //         .parents('.frm_form_field')
+  //         .invoke('show')
+  //         .then(() => {
+  //           cy.wrap(checkbox).check();
+  //         });
+  //     }
+  //   });
+  // },
 
   checkAgreeTandCs: () => {
     selectors.getAgreeTandCs().check();

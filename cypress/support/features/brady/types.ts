@@ -5,3 +5,10 @@ export enum AreaOfInterest {
   NORDIK_POWER_TRADING_OPERATION = 'Nordic Power Trading Operations',
   CRM = 'Credit Risk Management',
 }
+
+export enum HowDidYouHearUs {
+  GOOGlE = 'Google search',
+  LINKEDIN = 'Linkedin',
+  ONLINE = 'Online directory',
+  WOM = 'Word of mouth',
+}
