@@ -13,6 +13,7 @@ export default defineConfig({
     conduitHomePage: "https://angularjs.realworld.io/#/",
     contactUs: "https://automationteststore.com/index.php?rt=content/contact",
     loginPage: "https://automationteststore.com/index.php?rt=account/login",
-    reqresPage: "https://reqres.in/"
+    reqresPage: "https://reqres.in/",
+    brady: 'https://www.bradytechnologies.com/'
   }
 });
