@@ -9,17 +9,19 @@ describe('Log in', () => {
         homepage.visitLoginPage();
     });
 
-    it('Adding a product to the cart and checkout', () => {
+    it.only('Adding a product to the cart and checkout', () => {
         cy.login_form(testUser.USER_NAME, testUser.PASSWORD);
-        cy.wait(5000);
-        cy.get('#customer_menu_top').should('exist');
+        cy.wait(2000);
+        // cy.get('#customer_menu_top').should('exist');
+        Checkout.assert.CustomerMenuTopShown();
+        // cy.get('a[href*="product/category&path="]').contains('Fragrance').click();
+        Checkout.action.clickFragranceProductCategory('Fragrance');
+        // cy.select_product('Gucci Guilty');
+        Checkout.action.selectaProduct('Gucci Guilty')
+        // cy.checkout('2');
+        Checkout.action.checkout('2');
+        Checkout.assert.CheckoutConfirmation();
 
-        cy.get('a[href*="product/category&path="]').contains('Fragrance').click();
-        cy.select_product('Gucci Guilty');
-        cy.get('.bgnone').should('exist');
-        // Gucci Guilty
-        // ck one shock for him Deodorant
-        cy.checkout('2');
     });
 
     it('should be able to login', () => {

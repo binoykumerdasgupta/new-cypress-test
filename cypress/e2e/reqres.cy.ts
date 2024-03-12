@@ -1,9 +1,11 @@
 /// <reference types="Cypress" />
 
+import { homepage } from "../support/pages/HomePage";
+
 describe('Contact us', () => {
     beforeEach(() => {
-        cy.visit('https://reqres.in/');
-        cy.wait(5000);
+        homepage.visitReqResPage();
+        cy.wait(2000);
     });
 
     it('Providing some mocking data for users-single', () => {
