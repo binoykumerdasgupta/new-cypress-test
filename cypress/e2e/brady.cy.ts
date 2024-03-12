@@ -10,7 +10,7 @@ describe('Contact us', () => {
         cy.wait(2000);
     });
 
-    it.only('Fill the contact us page providing valid data', () => {
+    it('Fill the contact us page providing valid data', () => {
         Brady.action.goToContactUsPage();
         Brady.assert.NameInputShown();
         Brady.assert.EmailInputShown();
@@ -21,14 +21,11 @@ describe('Contact us', () => {
         Brady.action.typeMessage();
 
         Brady.action.selectFromHowDidYouHearAboutUs();
-        Brady.action.selectMultipleCheckboxesAreaOfInterest(3);
+        Brady.action.selectCheckboxesAreaOfInterest(AreaOfInterest.ERTM);
 
         Brady.assert.AgreeTandCsShown();
         Brady.action.checkAgreeTandCs();
 
         Brady.assert.SubmitFormShown();
-        // Check one option from "Area of Interest"
-        // cy.get(`input[value="${areaOfInterest}"]`).check();
-
     });
 });
