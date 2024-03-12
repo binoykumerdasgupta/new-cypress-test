@@ -27,3 +27,9 @@ export const userInfo: ConduitUserInfo = {
     EMAIL: EMAIL,
     PASSWORD: PASSWORD
 };
+
+export const validLoginInfo: ConduitUserInfo = {
+    USER_NAME: 'binoy-90',
+    EMAIL: 'binoy-90@test.co.uk',
+    PASSWORD: 'binoy-90'
+}
