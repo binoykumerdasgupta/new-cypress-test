@@ -10,7 +10,7 @@ describe('template spec', () => {
         homepage.visitConduitHomePage();
     });
 
-    it('Sign up', () => {
+    it('should be able to register a user and able to login', () => {
         cy.intercept('POST', '**/*.realworld.io/api/users').as('createUser');
         Conduit.action.clickSignUpLink();
         Conduit.assert.SignUpButtonShown();
@@ -27,13 +27,13 @@ describe('template spec', () => {
         });
     });
 
-    it('Sign in', () => {
+    it('should be able to login with a valid credentials', () => {
         Conduit.action.clickSignInLink();
         Conduit.assert.SignInButtonShown();
-        Conduit.action.typeEmail();
-        Conduit.action.typePassword();
+        Conduit.action.loginEmail();
+        Conduit.action.loginPassword();
         Conduit.action.clickSignInButton();
-        Conduit.assert.UserNameShownInHomePage();
+        Conduit.assert.UserNameShownInHomePageForLoggedInUser();
     });
 
     // // Mocking data !! 
@@ -42,8 +42,8 @@ describe('template spec', () => {
 
         Conduit.action.clickSignInLink();
         Conduit.assert.SignInButtonShown();
-        Conduit.action.typeEmail();
-        Conduit.action.typePassword();
+        Conduit.action.loginEmail();
+        Conduit.action.loginPassword();
         Conduit.action.clickSignInButton();
 
         cy.get('.tag-list').should('contain', 'Binoy')
@@ -56,8 +56,8 @@ describe('template spec', () => {
 
         Conduit.action.clickSignInLink();
         Conduit.assert.SignInButtonShown();
-        Conduit.action.typeEmail();
-        Conduit.action.typePassword();
+        Conduit.action.loginEmail();
+        Conduit.action.loginPassword();
         Conduit.action.clickSignInButton();
 
         cy.wait('@articles').then(({ request, response }) => {

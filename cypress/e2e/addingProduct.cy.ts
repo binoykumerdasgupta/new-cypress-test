@@ -14,7 +14,7 @@ describe('Product', () => {
         cy.get('.bgnone').should('exist');
     });
 
-    it.only('Select a product from haircare', () => {
+    it('Select a product from haircare', () => {
         cy.get('a[href*="product/category&path="]').contains('Hair Care').click()
         cy.select_product('Pantene Pro-V Conditioner, Classic Care');
         cy.get('.bgnone').should('exist');

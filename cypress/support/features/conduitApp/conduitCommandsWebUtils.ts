@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 import { constants } from './conduitConstants';
-import { userInfo } from '../../user_credentials';
+import { userInfo, validLoginInfo } from '../../user_credentials';
 
 const { defaultCopy } = constants;
 
@@ -23,6 +23,7 @@ export const assert = {
     SignUpButtonShown: () => selectors.getSignUpButton().should('be.visible'),
     SignInButtonShown: () => selectors.getSignInButton().should('be.visible'),
     UserNameShownInHomePage: () => cy.get(':nth-child(4) > .nav-link').should('contain', userInfo.USER_NAME),
+    UserNameShownInHomePageForLoggedInUser: () => cy.get(':nth-child(4) > .nav-link').should('contain', validLoginInfo.USER_NAME),
 };
 
 // Actions 
@@ -42,6 +43,14 @@ export const action = {
 
     typeEmail: () => {
         selectors.getEmail().type(userInfo.EMAIL);
+    },
+
+    loginEmail: () => {
+        selectors.getEmail().type(validLoginInfo.EMAIL)
+    },
+
+    loginPassword: () => {
+        selectors.getPassword().type(validLoginInfo.PASSWORD)
     },
 
     typePassword: () => {
