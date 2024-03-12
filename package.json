@@ -13,9 +13,7 @@
   "devDependencies": {
     "@testing-library/cypress": "^10.0.1",
     "chai": "^5.0.3",
-    "cypress": "^13.6.4"
-  },
-  "dependencies": {
-    "typescript": "^5.3.3"
+    "cypress": "^13.6.4",
+    "typescript": "^5.4.2"
   }
 }

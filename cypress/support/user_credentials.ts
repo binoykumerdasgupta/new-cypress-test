@@ -33,3 +33,20 @@ export const validLoginInfo: ConduitUserInfo = {
     EMAIL: 'binoy-90@test.co.uk',
     PASSWORD: 'binoy-90'
 }
+
+export type BradyContactUsInfo = {
+    NAME: string;
+    EMAIL: string;
+    COMPANY_NAME: string;
+    MESSAGE: string;
+}
+
+export const bradyContactUsInfo: BradyContactUsInfo = {
+    NAME: 'John Doe',
+    EMAIL: 'example@example.com',
+    COMPANY_NAME: 'Example Company',
+    MESSAGE: 'This is a test message. Thank you!!'
+}
+
+const howHearAbout = 'Google search';
+const areaOfInterest = 'Energy Trading & Risk Management (ETRM)';
