@@ -12,5 +12,9 @@ class HomePage {
         cy.visit(Cypress.env('conduitHomePage'));
     }
 
+    visitReqResPage () {
+        cy.visit(Cypress.env('reqresPage'));
+    }
+
 }
 export const homepage = new HomePage();
