@@ -25,6 +25,8 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 //
+import '@testing-library/cypress/add-commands'
+
 Cypress.Commands.add('footer_link', (label: string, selector: string, text: string) => {
     cy.get('a[href*="content_id"]').contains(label).click();
     cy.get(selector).should('exist').contains(text);
@@ -88,30 +90,30 @@ Cypress.Commands.add('sign_up', (username: string, email: string, password: stri
     cy.findByPlaceholderText('Username').type(username);
     cy.findByPlaceholderText('Email').type(email)
     cy.findByPlaceholderText('Password').type(password);
-    cy.findByRole('button', {name: 'Sign up'}).click();
+    cy.findByRole('button', { name: 'Sign up' }).click();
 })
 
 Cypress.Commands.add('sign_in', (email: string, password: string) => {
     cy.contains('Sign in').click();
     cy.findByPlaceholderText('Email').type(email)
     cy.findByPlaceholderText('Password').type(password);
-    cy.findByRole('button', {name: 'Sign in'}).click();
+    cy.findByRole('button', { name: 'Sign in' }).click();
 })
 
-Cypress.Commands.add('mock_articles', (email: string, password: string ) => {
+Cypress.Commands.add('mock_articles', (email: string, password: string) => {
     cy.intercept('GET', '**/articles/feed*', { fixture: 'articles.json' }).as('articles');
     cy.contains('Sign in').click();
     cy.findByPlaceholderText('Email').type(email)
     cy.findByPlaceholderText('Password').type(password);
-    cy.findByRole('button', {name: 'Sign in'}).click();
+    cy.findByRole('button', { name: 'Sign in' }).click();
 })
 
-Cypress.Commands.add('mock_tags', (email: string, password: string ) => {
+Cypress.Commands.add('mock_tags', (email: string, password: string) => {
     cy.intercept('GET', '**/tags', { fixture: 'popularTags.json' }).as('tags');
     cy.contains('Sign in').click();
     cy.findByPlaceholderText('Email').type(email)
     cy.findByPlaceholderText('Password').type(password);
-    cy.findByRole('button', {name: 'Sign in'}).click();
+    cy.findByRole('button', { name: 'Sign in' }).click();
 })
 
 // declare global {

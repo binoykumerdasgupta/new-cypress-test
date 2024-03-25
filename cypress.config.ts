@@ -6,7 +6,7 @@ export default defineConfig({
       // implement node event listeners here
     },
     video: false,
-    specPattern: "cypress/e2e/**/*.ts"
+    specPattern: "cypress/e2e/**/*.ts",
   },
   env: {
     homePage: "https://automationteststore.com",
