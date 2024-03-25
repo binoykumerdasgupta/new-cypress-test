@@ -38,7 +38,7 @@ describe('My first test for ktchen-sink', () => {
     cy.get('.dropdown-menu').find('li').eq(1).should('have.text', 'Traversal');
   });
 
-  it.only('Using a drop down menu find a tag and href', () => {
+  it('Using a drop down menu find a tag and href', () => {
     cy.get('.dropdown-menu')
       .find('li')
       .find('a')
