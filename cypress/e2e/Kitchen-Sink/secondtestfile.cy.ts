@@ -7,7 +7,7 @@ describe('My first test for ktchen-sink', () => {
     cy.findAllByText(navBarText).should('exist');
   });
   // with in aelement level
-  it('Inputting value in Email placrholder - async vall ', () => {
+  it('Inputting value in Email placrholder - async call ', () => {
     // since non cypress commands gets excuted first
     cy.findByPlaceholderText('Email').type('asyncCall@test.co.uk');
     cy.wait(2000);
@@ -15,7 +15,7 @@ describe('My first test for ktchen-sink', () => {
   });
 
   // when to use thrn() -non cypress commands
-  it('Inputting value in Email placrholder -  for sync vall ', () => {
+  it('Inputting value in Email placrholder -  for sync call ', () => {
     // sync test will more controllable the way we want .then()
     cy.findByPlaceholderText('Email').type('asyncCall@test.co.uk');
     cy.wait(2000).then(() => {
