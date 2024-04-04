@@ -1,0 +1,10 @@
+{
+  "name": "Binoy",
+  "email": "learningcypress@test.io",
+  "contact": [
+    {
+      "mobile": 12345,
+      "address": "London"
+    }
+  ]
+}

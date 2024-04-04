@@ -7,7 +7,7 @@ describe('My first test for ktchen-sink', () => {
     cy.findAllByText(navBarText).should('exist');
   });
   // with in aelement level
-  it('Inputting value in Email placrholder - async vall ', () => {
+  it('Inputting value in Email placrholder - async call ', () => {
     // since non cypress commands gets excuted first
     cy.findByPlaceholderText('Email').type('asyncCall@test.co.uk');
     cy.wait(2000);
@@ -15,7 +15,7 @@ describe('My first test for ktchen-sink', () => {
   });
 
   // when to use thrn() -non cypress commands
-  it('Inputting value in Email placrholder -  for sync vall ', () => {
+  it('Inputting value in Email placrholder -  for sync call ', () => {
     // sync test will more controllable the way we want .then()
     cy.findByPlaceholderText('Email').type('asyncCall@test.co.uk');
     cy.wait(2000).then(() => {
@@ -43,5 +43,33 @@ describe('My first test for ktchen-sink', () => {
       .find('li')
       .find('a')
       .should('have.attr', 'href', '/commands/querying');
+  });
+
+  it('Click a page - Location', () => {
+    cy.findAllByText('Location').click({ force: true });
+    cy.url().should('include', '/commands/location');
+  });
+
+  it('type someting in the input field', () => {
+    cy.findByPlaceholderText('Email')
+      .type('binoy')
+      .should('have.value', 'binoy');
+  });
+
+  it('type someting in the label text input field called Describe', () => {
+    cy.findByLabelText('Describe:')
+      .type('hello automation')
+      .should('have.value', 'hello automation')
+      .then(() => {
+        cy.wait(2000);
+        cy.findByLabelText('Describe:').clear().should('have.value', '');
+      });
+  });
+
+  it('should check box', () => {
+    cy.get('.action-checkboxes [type="checkbox"]').first().check().should('be.checked');
+    // .not('[disabled]')
+    // .check()
+    // .should('be.checked');
   });
 });
