@@ -20,5 +20,13 @@ class HomePage {
         cy.visit(Cypress.env('brady'));
     }
 
+    visitUnify() {
+        cy.visit(Cypress.env('unify'))
+    }
+
+    visitCaplinContactUs() {
+        cy.visit(Cypress.env('caplin'))
+    }
+
 }
 export const homepage = new HomePage();

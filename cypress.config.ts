@@ -14,6 +14,8 @@ export default defineConfig({
     contactUs: "https://automationteststore.com/index.php?rt=content/contact",
     loginPage: "https://automationteststore.com/index.php?rt=account/login",
     reqresPage: "https://reqres.in/",
-    brady: 'https://www.bradytechnologies.com/'
+    brady: 'https://www.bradytechnologies.com/',
+    unify: 'https://www.wtwco.com/en-us',
+    caplin: 'https://www.caplin.com/business/contactus',
   }
 });

@@ -6,8 +6,7 @@ import { AreaOfInterest } from '../support/features/brady/types';
 describe('Contact us', () => {
     beforeEach(() => {
         homepage.visitBrady();
-        cy.get('#declineButton').click();
-        cy.wait(2000);
+        Brady.action.acceptTheCookies();
     });
 
     it('Fill the contact us page providing valid data', () => {
