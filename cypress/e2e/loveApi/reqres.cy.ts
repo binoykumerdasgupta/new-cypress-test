@@ -1,6 +1,6 @@
 /// <reference types="Cypress" />
 
-import { homepage } from "../support/pages/HomePage";
+import { homepage } from "../../support/pages/HomePage";
 
 describe('Contact us', () => {
     beforeEach(() => {

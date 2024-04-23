@@ -1,5 +1,5 @@
 /// <reference types="cypress" />
-import { homepage } from "../support/pages/HomePage";
+import { homepage } from "../../support/pages/HomePage";
 
 describe('template spec', () => {
   beforeEach(() => {
@@ -16,11 +16,11 @@ describe('template spec', () => {
     cy.footer_link('About Us', '.heading4', 'some description');
     // cy.get('.heading4').should('exist').contains('some description');
     cy.title().should('include', 'About Us');
-    })
-
-    it('Privacy policy page', () => {
-      cy.footer_link('Privacy Policy', '.heading4', 'Privacy Policy');
-      cy.title().should('include', 'Privacy Policy');
-    });
-
   })
+
+  it('Privacy policy page', () => {
+    cy.footer_link('Privacy Policy', '.heading4', 'Privacy Policy');
+    cy.title().should('include', 'Privacy Policy');
+  });
+
+})
