@@ -1,8 +1,8 @@
 /// <reference types="cypress" />
 import { expect } from "chai";
-import { homepage } from "../support/pages/HomePage";
-import * as Conduit from '../support/features/conduitApp/conduitCommandsWebUtils';
-import { userInfo } from '../support/user_credentials';
+import { homepage } from "../../support/pages/HomePage";
+import * as Conduit from '../../support/features/conduitApp/conduitCommandsWebUtils';
+import { userInfo } from '../../support/user_credentials';
 
 describe('template spec', () => {
     // An application under test ( AUT )

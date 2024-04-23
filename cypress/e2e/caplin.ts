@@ -1,6 +1,8 @@
 import { homepage } from '../support/pages/HomePage';
 import * as Caplin from '../support/features/caplin/contactUsWebUtils';
 import { HowDidYouHearAboutUs } from '../support/features/caplin/types';
+import { contactUsInfo } from '../support/features/caplin/contactusFormData';
+
 
 describe('Contact us form feature:', () => {
   beforeEach(() => {
@@ -12,6 +14,8 @@ describe('Contact us form feature:', () => {
     Caplin.assertion.contactUsFormHeaderDescriptionShown();
 
     Caplin.actions.typeName();
+    Caplin.assertion.assertPlaceholderNameValueShown(contactUsInfo.NAME);
+
     Caplin.actions.typeEmail();
     Caplin.actions.typeTelephone();
     Caplin.actions.typeCompnay();

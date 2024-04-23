@@ -6,12 +6,16 @@ const { defaultCopy } = constants;
 
 export const selectors = {
   getName: () => cy.get(defaultCopy.name),
+  getNamePlaceholderValue: () => cy.get(defaultCopy.placeHolderName),
   getEmail: () => cy.get(defaultCopy.email),
   getTelephone: () => cy.get(defaultCopy.telephone),
   getCompnay: () => cy.get(defaultCopy.company),
   getJobTitle: () => cy.get(defaultCopy.jobTitle),
   getMessage: () => cy.get(defaultCopy.message),
   getBackToMeButton: () => cy.get(defaultCopy.getBackToMe),
+  getContactForm: () => cy.get(defaultCopy.contactForm),
+  getHowDidYouHearAboutUs: () => cy.get(defaultCopy.howDidYouHearAboutUs),
+  getOptions: () => cy.get(defaultCopy.options),
 };
 
 export const actions = {
@@ -36,26 +40,46 @@ export const actions = {
   },
 
   selectHowDidYouHearAboutUsOption: (option: HowDidYouHearAboutUs) => {
-    cy.get('[data-fieldname="acquisition"]').click();
-    cy.get(`select[name="acquisition"]`).select(option);
+    selectors.getHowDidYouHearAboutUs().click();
+    selectors.getOptions().select(option);
   },
 
   typeMessage: () => {
-    selectors.getMessage().type(contactUsInfo.MESSAGE)
+    selectors.getMessage().type(contactUsInfo.MESSAGE);
   },
 };
 
 export const assertion = {
+
+  assertPlaceholderNameValueShown: (placeholderText: string) => {
+    selectors.getNamePlaceholderValue().then(($input) => {
+      if ($input.attr('placeholder')) {
+        expect($input.attr('placeholder')).to.include(placeholderText);
+      } else {
+        expect($input.val()).to.include(placeholderText);
+      }
+    });
+
+  },
+
   titleShown: () => {
-    cy.title().should('include', 'Financial Trading Technology | Caplin Systems | Contact Us')
+    cy.title().should(
+      'include',
+      'Financial Trading Technology | Caplin Systems | Contact Us'
+    );
   },
 
   contactUsFormHeaderDescriptionShown: () => {
-    cy.get('#homepage_contact_form').should('exist').and('contain', 'Please enter your details and a message below.')
+    selectors
+      .getContactForm()
+      .should('exist')
+      .and('contain', 'Please enter your details and a message below.');
   },
 
   getBackToMeButtonShown: () => {
-    selectors.getBackToMeButton().should('be.visible').and('contain', 'GET BACK TO ME');
+    selectors
+      .getBackToMeButton()
+      .should('be.visible')
+      .and('contain', 'GET BACK TO ME');
   },
-
 };

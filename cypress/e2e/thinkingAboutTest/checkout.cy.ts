@@ -1,8 +1,8 @@
 /// <reference types="Cypress" />
 
-import { homepage } from "../support/pages/HomePage";
-import * as Checkout from '../support/features/checkout/checkoutCommandsWebUtils';
-import { testUser } from "../support/user_credentials";
+import { homepage } from "../../support/pages/HomePage";
+import * as Checkout from '../../support/features/checkout/checkoutCommandsWebUtils';
+import { testUser } from "../../support/user_credentials";
 
 describe('Log in', () => {
     beforeEach(() => {
