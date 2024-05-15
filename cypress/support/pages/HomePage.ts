@@ -28,5 +28,9 @@ class HomePage {
         cy.visit(Cypress.env('caplin'))
     }
 
+    visitPactio() {
+        cy.visit(Cypress.env('pactio'))
+    }
+
 }
 export const homepage = new HomePage();
