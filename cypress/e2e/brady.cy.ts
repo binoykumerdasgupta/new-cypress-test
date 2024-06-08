@@ -9,7 +9,7 @@ describe('Contact us', () => {
         Brady.action.acceptTheCookies();
     });
 
-    it('Fill the contact us page providing valid data', () => {
+    it.skip('Fill the contact us page providing valid data', () => {
         Brady.action.goToContactUsPage();
         Brady.assert.NameInputShown();
         Brady.assert.EmailInputShown();

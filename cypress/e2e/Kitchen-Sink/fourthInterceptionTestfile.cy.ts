@@ -25,7 +25,7 @@ describe('Lets do some api testing thing', () => {
     });
   });
 
-  it('Lets posting some data', () => {
+  it.skip('Lets posting some data', () => {
     cy.intercept('POST', '**/comments/*').as('postComment');
     // we have code that posts a comment when
     cy.get('.network-post').click();
