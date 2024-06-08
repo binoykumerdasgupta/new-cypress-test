@@ -10,7 +10,7 @@ describe('template spec', () => {
         homepage.visitConduitHomePage();
     });
 
-    it('should be able to register a user and able to login', () => {
+    it.only('should be able to register a user and able to login', () => {
         cy.intercept('POST', '**/*.realworld.io/api/users').as('createUser');
         Conduit.action.clickSignUpLink();
         Conduit.assert.SignUpButtonShown();

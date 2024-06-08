@@ -17,5 +17,9 @@ declare namespace Cypress {
 
         setLocalStorage(key: string, value: string): Chainable<void>;
         getLocalStorage(key: string): Chainable<void>;
+        // The Fibre cafe
+        checkLinkExists(linkText: string): Chainable<void>;
+        verifyThePageTitle(linkText: string, expectedUrl: string, expectedTitle: string): Chainable<void>;
+
     }
 }

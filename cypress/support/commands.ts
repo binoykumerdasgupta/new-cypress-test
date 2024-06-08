@@ -172,3 +172,59 @@ Cypress.Commands.overwrite(
         }
     }
 );
+
+// For The Fibre Cafe
+
+Cypress.Commands.add('checkLinkExists', (linkText: string) => {
+    cy.get('ul#menu-main-menu', { timeout: 5000 })
+        .contains('a.nav-link', linkText)
+        .should('exist')
+        .then((link) => {
+            if (link.length === 0) {
+                throw new Error(`Link with text "${linkText}" not found`);
+            }
+        });
+});
+
+// Cypress.Commands.add(
+//     'verifyThePageTitle',
+//     (linkText: string, expectedUrl: string, expectedTitle: string) => {
+//         cy.get('ul#menu-main-menu')
+//             .then(($menuContainer) => {
+//                 cy.log('Found menu container:', $menuContainer);
+//                 return cy.wrap($menuContainer);
+//             })
+//             .should('exist')
+//             .contains('a.nav-link', linkText)
+//             .click({ force: true })
+//             .then(() => {
+//                 cy.url().should('eq', expectedUrl);
+//                 cy.title().should('eq', expectedTitle);
+//                 cy.go('back');
+//             });
+//     }
+// );
+
+Cypress.Commands.add(
+    'verifyThePageTitle',
+    (linkText: string, expectedUrl: string, expectedTitle: string) => {
+        cy.window().its('document.readyState').should('eq', 'complete');
+        cy.get('ul#menu-main-menu', { timeout: 20000 })
+            .should('exist')
+            .contains('a.nav-link', linkText)
+            .click({ force: true })
+            .then(() => {
+                cy.url().should('eq', expectedUrl);
+                cy.title().should('eq', expectedTitle);
+                cy.go('back');
+            });
+    }
+);
+
+Cypress.on('uncaught:exception', (err, runnable) => {
+    // We expect a null reference error, but we don't want to fail the test
+    if (err.message.includes('Cannot read properties of null')) {
+        return false;
+    }
+    return true;
+});

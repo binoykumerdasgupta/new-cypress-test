@@ -28,5 +28,13 @@ class HomePage {
         cy.visit(Cypress.env('caplin'))
     }
 
+    visitBlazedemo() {
+        cy.visit(Cypress.env('blazeDemo'))
+    }
+
+    visitFibreCafeHomePage() {
+        cy.visit(Cypress.env('fibrecafe'))
+    }
+
 }
 export const homepage = new HomePage();

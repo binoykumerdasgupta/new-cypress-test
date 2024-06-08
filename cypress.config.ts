@@ -17,5 +17,8 @@ export default defineConfig({
     brady: 'https://www.bradytechnologies.com/',
     unify: 'https://www.wtwco.com/en-us',
     caplin: 'https://www.caplin.com/business/contactus',
+    blazeDemo: 'https://blazedemo.com/',
+    fibrecafe: 'https://www.thefibrecafe.net/',
+
   }
 });

@@ -1,6 +1,6 @@
 /// <reference types="Cypress" />
 
-import { homepage } from "../../support/pages/HomePage";
+import { homepage } from '../../support/pages/HomePage';
 
 describe('Contact us', () => {
     beforeEach(() => {
@@ -9,7 +9,9 @@ describe('Contact us', () => {
     });
 
     it('Providing some mocking data for users-single', () => {
-        cy.intercept('GET', '**/api/users/2*', { fixture: 'reqres.json' }).as('single-user');
+        cy.intercept('GET', '**/api/users/2*', { fixture: 'reqres.json' }).as(
+            'single-user'
+        );
 
         cy.get('[data-id="users-single"]').click();
 
@@ -20,9 +22,20 @@ describe('Contact us', () => {
 
         // ********* Another approach ( Better approach) *******************
         cy.wait('@single-user').then(({ request, response }) => {
-            expect(response?.body.data.email).to.eq('binoy.cypress-mocking@reqres.in');
+            expect(response?.body.data.email).to.eq(
+                'binoy.cypress-mocking@reqres.in'
+            );
         });
-
     });
 
+    it('Something post', () => {
+        cy.intercept('POST', '**/api/users', { fixture: 'post.json' }).as(
+            'postData'
+        );
+        cy.get('[data-id="post"]').click();
+
+        cy.wait('@postData', { timeout: 2000 }).then(({ request, response }) => {
+            expect(response?.body.name).to.eql('morpheus');
+        });
+    });
 });
