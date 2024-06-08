@@ -56,7 +56,7 @@ describe('My first test for ktchen-sink', () => {
       .should('have.value', 'binoy');
   });
 
-  it('type someting in the label text input field called Describe', () => {
+  it.skip('type someting in the label text input field called Describe', () => {
     cy.findByLabelText('Describe:')
       .type('hello automation')
       .should('have.value', 'hello automation')

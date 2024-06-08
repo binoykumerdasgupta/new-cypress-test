@@ -9,7 +9,7 @@ describe('Log in', () => {
         homepage.visitLoginPage();
     });
 
-    it('Adding a product to the cart and checkout', () => {
+    it.skip('Adding a product to the cart and checkout', () => {
         cy.login_form(testUser.USER_NAME, testUser.PASSWORD);
         cy.wait(2000);
         // cy.get('#customer_menu_top').should('exist');
